@@ -1,11 +1,12 @@
 const express = require("express");
 const connect = require("./config/db");
+var cors = require('cors')
 const { getUsers, register, login } = require("./controllers/auth.controller");
 const port = process.env.PORT || 5000
 const flatsController = require("./controllers/flat.controller")
 const residentsController = require("./controllers/residents.controller")
 
-
+app.use(cors())
 const app = express();
 
 
