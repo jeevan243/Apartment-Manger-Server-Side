@@ -24,6 +24,16 @@ router.get("/", async (req, res) => {
     }
 })
 
+router.get("/:id", async (req, res) => {
+    try {
+        const flat = await Flat.findById(req.params.id);
+        return res.status(201).send(flat)
+    } catch (er) {
+        return res.status(500).send(er.message)
+    }
+})
+
+
 router.delete("/:id", async (req, res) => {
     try {
         const flat = await Flat.findByIdAndDelete(req.params.id);
