@@ -26,6 +26,7 @@ router.get("/", async (req, res) => {
 
 router.get("/:id", async (req, res) => {
     try {
+        console.log(req.params.id)
         const flat = await Flat.findById(req.params.id);
         return res.status(201).send(flat)
     } catch (er) {
