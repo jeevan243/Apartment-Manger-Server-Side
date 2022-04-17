@@ -15,7 +15,7 @@ router.post("/", async (req, res) => {
 
 router.get("/", async (req, res) => {
     try {
-        const residents = await Residents.find().lean().exec();
+        const residents = await Residents.find().populate({ path: "flat_id" }).lean().exec();
         return res.status(201).send(residents)
     } catch (er) {
         return res.status(500).send(er.message)

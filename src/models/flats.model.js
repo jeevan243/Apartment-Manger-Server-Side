@@ -2,7 +2,7 @@ const mongoose = require("mongoose");
 
 const flatSchema = new mongoose.Schema({
     type: { type: String, required: true },
-    block: { type: Number, required: true },
+    block: { type: String, required: true },
     flatnumber: { type: Number, required: true },
 },
     {
