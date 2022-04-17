@@ -1,9 +1,10 @@
 const express = require("express");
 const connect = require("./config/db");
-const { register, login } = require("./controllers/auth.controller");
+const { getUsers, register, login } = require("./controllers/auth.controller");
 const port = process.env.PORT || 5000
 const flatsController = require("./controllers/flat.controller")
 const residentsController = require("./controllers/residents.controller")
+
 
 const app = express();
 
@@ -16,7 +17,10 @@ app.use("/flats", flatsController)
 //register
 
 app.post("/register", register);
+app.get ("/userdata", getUsers)
 app.post("/login", login);
+
+
 
 app.listen(port, async (req, res) => {
     try {

@@ -1,4 +1,5 @@
 //dotenv package to hide the secret key
+// const express = require("express")
 require("dotenv").config();
 const jwt = require("jsonwebtoken")
 const User = require("../models/user.model");
@@ -7,8 +8,16 @@ const newToken = (user) => {
     // console.log(process.env)
     return jwt.sign({ user }, process.env.JWT_SECRET_KEY)
 }
+const getUsers = async (req, res) => {
+    try {
 
-
+        const users = await User.find().lean().exec();
+        // console.log(users);
+        return res.send(users)
+    } catch (error) {
+        return res.send(error.message)
+    }
+}
 
 //register
 const register = async (req, res) => {
@@ -66,4 +75,4 @@ const login = async (req, res) => {
     }
 }
 
-module.exports = { register, login }
+module.exports = { register, login, getUsers }
